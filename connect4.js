@@ -80,7 +80,12 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
-  alert(msg)
+  setTimeout(()=>{
+    alert(msg)
+    board=[] //prevents new inputs
+    location.reload()// reload the page after game finish
+  },0)
+  
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -102,7 +107,8 @@ function handleClick(evt) {
 
   // check for win
   if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
+    return endGame(`Player ${currPlayer} won!`)
+   
   }
 
   // check for tie
@@ -123,7 +129,7 @@ function checkForWin() {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
-
+    
     return cells.every(
       ([y, x]) =>
         y >= 0 &&
